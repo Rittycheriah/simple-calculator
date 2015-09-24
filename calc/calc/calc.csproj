@@ -43,8 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddIt.cs" />
+    <Compile Include="DivideIt.cs" />
+    <Compile Include="ModIt.cs" />
+    <Compile Include="MultiplyIt.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubtractIt.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
