@@ -13,8 +13,7 @@ namespace calc
         {
             Console.WriteLine("[0]>");
             string rawInput = Console.ReadLine();
-            RegexUtil.MatchKey(rawInput);
-            Console.Read();
+            loopIt.Execute(rawInput);
         }
     }
 }

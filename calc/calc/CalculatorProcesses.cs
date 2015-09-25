@@ -55,7 +55,21 @@ namespace calc
 
         public class loopIt
         {
-            
+            static public void Execute(string input)
+            {
+                string quitStr = "quit";
+                string exitStr = "exit";
+
+                if (input == quitStr || input == exitStr)
+                {
+                    Console.WriteLine("Bye now! Hasta La Vista");
+                    Console.ReadLine();
+                }
+                else
+                {
+                    RegexUtil.MatchKey(input);
+                }
+            }
         }
     }
 }
