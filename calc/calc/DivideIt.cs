@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace calc
 {
-    public class DivideIt : Program
+    public class DivideIt : CalculatorProcesses
     {
         public int Division(int x, int y)
         {

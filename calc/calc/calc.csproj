@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddIt.cs" />
+    <Compile Include="CalculatorProcesses.cs" />
     <Compile Include="DivideIt.cs" />
     <Compile Include="ModIt.cs" />
     <Compile Include="MultiplyIt.cs" />

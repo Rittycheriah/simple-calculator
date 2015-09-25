@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace calc
 {
-    public class ModIt : Program
+    public class ModIt : CalculatorProcesses
     {
         public int Modulation(int x, int y)
         {

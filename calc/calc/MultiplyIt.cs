@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace calc
 {
-    public class MultiplyIt : Program
+    public class MultiplyIt : CalculatorProcesses
     {
         public int Multiplication(int x, int y)
         {
