@@ -9,38 +9,14 @@ namespace calc
 {
     public class CalculatorProcesses
     {
-        // parsing the individual inputs
-        //public class ParseExp
-        //{
-        //    Regex digit = new Regex(@"\d+");
-        //    Regex subOp = new Regex(@"[-]");
-        //    Regex divOp = new Regex(@"[/]");
-        //    Regex modOp = new Regex(@"[%]");
-        //    Regex addOp = new Regex(@"[+]");
-
-        //    public void expression(string inputs)
-        //    {
-        //        char[] charInputs = inputs.ToArray();
-
-        //        foreach (char input in charInputs)
-        //        {
-        //            if ("-".Contains(input))
-        //            {
-        //                var opIndex = charInputs.IndexOf("-");          
-        //            }
-        //        }
-        //    }
-        //}
-
-        // Regex expression that works \d+[-+\*%]+\d
         public class RegexUtil
         {
 
             static Regex add_regex = new Regex(@"(\d+)\s+([+])\s+(\d+)");
-            static Regex multiply_regex = new Regex(@"(\d+)+[*]+(\d+)");
-            static Regex divide_regex = new Regex(@"(\d+)+[/]+(\d+)");
-            static Regex subt_regex = new Regex(@"(\d+)+[-]+(\d+)");
-            static Regex mod_regex = new Regex(@"(\d+)+[%]+(\d+)");
+            static Regex multiply_regex = new Regex(@"(\d+)\s+([*])\s+(\d+)");
+            static Regex divide_regex = new Regex(@"(\d+)\s+([/])\s+(\d+)");
+            static Regex subt_regex = new Regex(@"(\d+)\s+([-])\s+(\d+)");
+            static Regex mod_regex = new Regex(@"(\d+)\s+([%])\s+(\d+)");
 
             static public void MatchKey(string input)
             {
@@ -61,23 +37,43 @@ namespace calc
                 }
                 else if (DivideMatch.Success)
                 {
-                    Console.WriteLine("divide");
+                    var value1 = int.Parse(DivideMatch.Groups[1].Value);
+                    var value2 = int.Parse(DivideMatch.Groups[3].Value);
+                    DivideIt divideThis = new DivideIt();
+                    string answer = divideThis.Division(value1, value2).ToString();
+                    Console.WriteLine(answer);
+                    Console.ReadLine();
                 }
                 else if (MultiMatch.Success)
                 {
-                    Console.WriteLine("multiply");
+                    var value1 = int.Parse(MultiMatch.Groups[1].Value);
+                    var value2 = int.Parse(MultiMatch.Groups[3].Value);
+                    MultiplyIt multiThis = new MultiplyIt();
+                    string answer = multiThis.Multiplication(value1, value2).ToString();
+                    Console.WriteLine(answer);
+                    Console.ReadLine();
                 }
                 else if (SubMatch.Success)
                 {
-                    Console.WriteLine("subtract");
+                    var value1 = int.Parse(SubMatch.Groups[1].Value);
+                    var value2 = int.Parse(SubMatch.Groups[3].Value);
+                    SubtractIt subThis = new SubtractIt();
+                    string answer = subThis.Subtraction(value1, value2).ToString();
+                    Console.WriteLine(answer);
+                    Console.ReadLine();
                 }
                 else if (ModMatch.Success)
                 {
-                    Console.WriteLine("moddddd");
+                    var value1 = int.Parse(ModMatch.Groups[1].Value);
+                    var value2 = int.Parse(ModMatch.Groups[3].Value);
+                    ModIt modThis = new ModIt();
+                    string answer = modThis.Modulation(value1, value2).ToString();
+                    Console.WriteLine(answer);
+                    Console.ReadLine();
                 }
                 else
                 {
-                    Console.WriteLine("improper exp");
+                    Console.WriteLine("improper expression -- please try again");
                 }
             }
         }
