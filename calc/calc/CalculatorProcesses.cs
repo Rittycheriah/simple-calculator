@@ -85,14 +85,25 @@ namespace calc
                 string quitStr = "quit";
                 string exitStr = "exit";
 
+                do
+                {
+                    Regex mathExp = new Regex(@"(\d+)\s*([-+*/%])\s*(\d+)");
+                    Match mathExpMatch = mathExp.Match(input);
+
+                    if (mathExpMatch.Success)
+                    {
+                        RegexUtil.MatchKey(input);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Improper Input, please try again");
+                    }
+                }
+                while (input != quitStr || input != exitStr);
+
                 if (input == quitStr || input == exitStr)
                 {
-                    Console.WriteLine("Bye now! Hasta La Vista");
-                    Console.ReadLine();
-                }
-                else
-                {
-                    RegexUtil.MatchKey(input);
+                    Console.WriteLine("Hasta La Vista Babe!");
                 }
             }
         }

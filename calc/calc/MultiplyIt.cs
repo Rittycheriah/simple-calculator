@@ -8,6 +8,8 @@ namespace calc
 {
     public class MultiplyIt : CalculatorProcesses
     {
+        private int answer { get; set; }
+
         public int Multiplication(int x, int y)
         {
             int answer = x * y;
