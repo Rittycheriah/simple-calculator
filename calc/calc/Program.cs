@@ -8,12 +8,12 @@ namespace calc
 {
     public class Program : CalculatorProcesses 
     {
-
         static void Main(string[] args)
         {
             Console.WriteLine("[0]>");
             string rawInput = Console.ReadLine();
             loopIt.Execute(rawInput);
+
         }
     }
 }
