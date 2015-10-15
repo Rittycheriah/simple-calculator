@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace calc
 {
-    public class Program : CalculatorProcesses 
+    public class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("[0]>");
-            string rawInput = Console.ReadLine();
-            loopIt.Execute(rawInput);
 
+            bool isRunning = false;
+
+            while (isRunning)
+            {
+
+            }
         }
     }
 }

@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace calc
 {
-    public class DivideIt
+    public class ExecuteFunc
     {
-        public int Division(int x, int y)
+        public void Execute(string input)
         {
-            int answer = x / y;
-            return answer;
-        } 
+            RegexUtil ProcessIt = new RegexUtil();
+        }
     }
 }

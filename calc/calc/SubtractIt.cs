@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace calc
 {
-    public class SubtractIt : CalculatorProcesses
-    {
+    public class SubtractIt
+    { 
         public int Subtraction(int x, int y)
         {
             int answer = x - y;
