@@ -19,11 +19,17 @@ namespace calc
             // while bool = true, run this loop
             while (isRunning)
             {
+                // writing the counter
                 Console.Write("[" + thisCounterInst.CountValue + "]");
+
+                // accepting the input
                 string input = Console.ReadLine();
+
+                // validating that syntax is right and not exiting loop
                 ValidInputs validating = new ValidInputs();
                 bool ValidateResult = validating.BreakingLoop(input);
 
+                // if not valid result, exit loop
                 if (ValidateResult == false)
                 {
                     isRunning = false;
@@ -31,9 +37,13 @@ namespace calc
                 }
                 else
                 {
+                    // other wise, valid result -- new Calculator instance
                     Calculator CalculatorInstance = new Calculator();
+
+                    // write the solution for expression
                     Console.WriteLine(CalculatorInstance.Calculate(input));
 
+                    // increment counter
                     thisCounterInst.CountValue = thisCounterInst.Count + 1;
                 }
             }
