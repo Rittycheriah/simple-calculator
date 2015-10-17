@@ -22,7 +22,10 @@ namespace calcTests
         public void SubtractionTest()
         {
             SubtractIt testSubtract = new SubtractIt();
-            int answer = testSubtract.Subtraction(5, 5);
+            ArrayList myNums = new ArrayList();
+            myNums.Add(5);
+            myNums.Add(5);
+            int answer = testSubtract.Subtraction(myNums);
             Assert.AreEqual(answer, 0);
         }
 
@@ -30,7 +33,10 @@ namespace calcTests
         public void MultiplicationTest()
         {
             MultiplyIt testMulti = new MultiplyIt();
-            int answer = testMulti.Multiplication(5, 5);
+            ArrayList myNums = new ArrayList();
+            myNums.Add(5);
+            myNums.Add(5);
+            int answer = testMulti.Multiplication(myNums);
             Assert.AreEqual(answer, 25);
         }
 
@@ -38,7 +44,10 @@ namespace calcTests
         public void DivisionTest()
         {
             DivideIt testDiv = new DivideIt();
-            int answer = testDiv.Division(5, 5);
+            ArrayList myNums = new ArrayList();
+            myNums.Add(5);
+            myNums.Add(5);
+            int answer = testDiv.Division(myNums);
             Assert.AreEqual(answer, 1);
         }
 
@@ -46,7 +55,10 @@ namespace calcTests
         public void ModulusTest()
         {
             ModIt testMod = new ModIt();
-            int answer = testMod.Modulation(5, 4);
+            ArrayList myNums = new ArrayList();
+            myNums.Add(5);
+            myNums.Add(4);
+            int answer = testMod.Modulation(myNums);
             Assert.AreEqual(answer, 1);
         }
 
@@ -173,6 +185,60 @@ namespace calcTests
             ValidInputs TestRegexPass = new ValidInputs();
             bool answer = TestRegexPass.BreakingLoop(input);
             Assert.AreEqual(true, answer);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestingWithoutOp()
+        {
+            string input = "5";
+            Calculator thisCalc = new Calculator();
+            int AdditionAns = thisCalc.Calculate(input);
+        }
+
+        [TestMethod]
+        public void TestingCalculatorAddition()
+        {
+            string input = "4 + 2";
+            Calculator thisCalc = new Calculator();
+            int AdditionAns = thisCalc.Calculate(input);
+            Assert.AreEqual(6, AdditionAns);
+        }
+
+        [TestMethod]
+        public void TestingCalculatorMulti()
+        {
+            string input = "4 * 2";
+            Calculator thisCalc = new Calculator();
+            int MultiplicationAns = thisCalc.Calculate(input);
+            Assert.AreEqual(8, MultiplicationAns);
+        }
+
+        [TestMethod]
+        public void TestingCalculatorDiv()
+        {
+            string input = "4 / 2";
+            Calculator thisCalc = new Calculator();
+            int DivisionAns = thisCalc.Calculate(input);
+            Assert.AreEqual(2, DivisionAns);
+        }
+
+        [TestMethod]
+        public void TestingCalculatorSub()
+        {
+            string input = "12 - 2";
+            Calculator thisCalc = new Calculator();
+            int SubtractionAns = thisCalc.Calculate(input);
+            Assert.AreEqual(10, SubtractionAns);
+        }
+
+        [TestMethod]
+        public void TestingCalculatorModulation()
+        {
+            string input = "11 % 2";
+            Calculator thisCalc = new Calculator();
+            int ModAns = thisCalc.Calculate(input);
+            Assert.AreEqual(1, ModAns);
         }
     }
 }

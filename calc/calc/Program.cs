@@ -16,7 +16,8 @@ namespace calc
 
             while (isRunning)
             {
-
+                string input = Console.ReadLine();
+                
             }
         }
     }
