@@ -11,11 +11,11 @@ namespace calc
     public class RegexUtil
     {
         // these are the regex's for each type of match 
-        Regex add_regex = new Regex(@"(\d+)\s+([+])\s+(\d+)");
-        Regex multiply_regex = new Regex(@"(\d+)\s+([*])\s+(\d+)");
-        Regex divide_regex = new Regex(@"(\d+)\s+([/])\s+(\d+)");
-        Regex subt_regex = new Regex(@"(\d+)\s+([-])\s+(\d+)");
-        Regex mod_regex = new Regex(@"(\d+)\s+([%])\s+(\d+)");
+        Regex add_regex = new Regex(@"\s*(\d+)\s+([+])\s+(\d+)");
+        Regex multiply_regex = new Regex(@"\s*(\d+)\s+([*])\s+(\d+)");
+        Regex divide_regex = new Regex(@"\s*(\d+)\s+([/])\s+(\d+)");
+        Regex subt_regex = new Regex(@"\s*(\d+)\s+([-])\s+(\d+)");
+        Regex mod_regex = new Regex(@"\s*(\d+)\s+([%])\s+(\d+)");
 
         // this method takes out numbers
         public ArrayList ExtractNums(string input)

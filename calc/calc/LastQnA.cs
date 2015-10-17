@@ -8,9 +8,9 @@ namespace calc
 {
     public static class LastQnA
     {
-        public static string lastq;
+        private static string lastq = null;
 
-        public static int lastans;
+        private static int? lastans = null;
          
         public static string LastQ
         {
@@ -18,7 +18,7 @@ namespace calc
             set { lastq = value; }
         }
 
-        public static int LastAns
+        public static int? LastAns
         {
             get { return lastans; }
             set { lastans = value; }
