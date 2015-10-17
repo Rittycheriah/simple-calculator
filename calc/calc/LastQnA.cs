@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 
 namespace calc
 {
-    public class LastQnA
+    public static class LastQnA
     {
-        public string LastQ
+        public static string lastq;
+
+        public static int lastans;
+         
+        public static string LastQ
         {
-            get { return LastQ; }
-            set { LastQ = value; }
+            get { return lastq; }
+            set { lastq = value; }
         }
 
-        public int LastAns
+        public static int LastAns
         {
-            get { return LastAns; }
-            set { LastAns = value; }
+            get { return lastans; }
+            set { lastans = value; }
         }
     }
 }

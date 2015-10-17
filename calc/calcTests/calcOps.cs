@@ -79,6 +79,15 @@ namespace calcTests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
+        public void doesNotTakeBadInputWithTwoOps()
+        {
+            string input = "3 + %";
+            RegexUtil processor = new RegexUtil();
+            ArrayList answer = processor.ExtractNums(input);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void doesNotTakeBadInput()
         {
             string input = "3 +";
@@ -252,20 +261,18 @@ namespace calcTests
             Assert.AreEqual(1, testCount.CountValue);
         }
 
-        //[TestMethod]
-        //public void HoldsLastQ()
-        //{
-        //    LastQnA testQ = new LastQnA();
-        //    testQ.LastQ = "1 + 4";
-        //    Assert.AreEqual("1 + 4", testQ.LastQ);
-        //}
+        [TestMethod]
+        public void HoldsLastQ()
+        {
+            LastQnA.lastq = "1 + 4";
+            Assert.AreEqual("1 + 4", LastQnA.LastQ);
+        }
 
         [TestMethod]
         public void HoldsLastAns()
         {
-            LastQnA testAns = new LastQnA();
-            testAns.LastAns = 5;
-            Assert.AreEqual(5, testAns.LastAns);
+            LastQnA.lastans = 5;
+            Assert.AreEqual(5, LastQnA.LastAns);
         }
     }
 }

@@ -40,8 +40,19 @@ namespace calc
                     // other wise, valid result -- new Calculator instance
                     Calculator CalculatorInstance = new Calculator();
 
-                    // write the solution for expression
-                    Console.WriteLine(CalculatorInstance.Calculate(input));
+                    if (input == "lastq" || input == " lastq")
+                    {
+                        Console.WriteLine(LastQnA.LastQ);
+                    }
+                    else if (input == "last" || input == " last")
+                    {
+                        Console.WriteLine(LastQnA.LastAns);
+                    }
+                    else
+                    {
+                        int thisAnswer = CalculatorInstance.Calculate(input);
+                        Console.WriteLine(thisAnswer);
+                    }
 
                     // increment counter
                     thisCounterInst.CountValue = thisCounterInst.Count + 1;

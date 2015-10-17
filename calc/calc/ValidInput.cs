@@ -22,8 +22,9 @@ namespace calc
                 Console.ReadLine();
                 return false;
             }
-            else
+            else 
             {
+                // starting calculations & will test for syntax of expression
                 return true;
             }
         }
