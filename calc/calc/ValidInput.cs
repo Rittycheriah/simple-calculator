@@ -10,13 +10,13 @@ namespace calc
     {
         public bool BreakingLoop(string input)
         {
-            if (input == "exit")
+            if (input == "exit" || input == " exit")
             {
                 Console.WriteLine("Hasta La Vista!");
                 Console.ReadLine();
                 return false;
             }
-            else if (input == "quit")
+            else if (input == "quit" || input == " quit")
             {
                 Console.WriteLine("Hasta La Vista!");
                 Console.ReadLine();

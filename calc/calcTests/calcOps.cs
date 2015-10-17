@@ -10,13 +10,16 @@ namespace calcTests
     [TestClass]
     public class calcOps
     {
-        //[TestMethod]
-        //public void AdditionTest()
-        //{
-            //AddIt testAdd = new AddIt();
-            //int answer = testAdd.Addition(5, 5);
-            //Assert.AreEqual(answer, 10);
-        //}
+        [TestMethod]
+        public void AdditionTest()
+        {
+            AddIt testAdd = new AddIt();
+            ArrayList myNums = new ArrayList();
+            myNums.Add(5);
+            myNums.Add(5);
+            int answer = testAdd.Addition(myNums);
+            Assert.AreEqual(answer, 10);
+        }
 
         [TestMethod]
         public void SubtractionTest()
@@ -247,6 +250,22 @@ namespace calcTests
             Counter testCount = new Counter();
             testCount.CountValue = testCount.Count + 1;
             Assert.AreEqual(1, testCount.CountValue);
+        }
+
+        //[TestMethod]
+        //public void HoldsLastQ()
+        //{
+        //    LastQnA testQ = new LastQnA();
+        //    testQ.LastQ = "1 + 4";
+        //    Assert.AreEqual("1 + 4", testQ.LastQ);
+        //}
+
+        [TestMethod]
+        public void HoldsLastAns()
+        {
+            LastQnA testAns = new LastQnA();
+            testAns.LastAns = 5;
+            Assert.AreEqual(5, testAns.LastAns);
         }
     }
 }
