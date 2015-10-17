@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="AddIt.cs" />
     <Compile Include="Calculator.cs" />
-    <Compile Include="CalculatorProcesses.cs" />
     <Compile Include="DivideIt.cs" />
     <Compile Include="ExecuteFunc.cs" />
     <Compile Include="loopIt.cs" />

@@ -13,11 +13,13 @@ namespace calc
             if (input == "exit")
             {
                 Console.WriteLine("Hasta La Vista!");
+                Console.ReadLine();
                 return false;
             }
             else if (input == "quit")
             {
                 Console.WriteLine("Hasta La Vista!");
+                Console.ReadLine();
                 return false;
             }
             else

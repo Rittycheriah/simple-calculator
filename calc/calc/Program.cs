@@ -12,12 +12,24 @@ namespace calc
         {
             Console.WriteLine("[0]>");
 
-            bool isRunning = false;
+            bool isRunning = true;
 
             while (isRunning)
             {
                 string input = Console.ReadLine();
-                
+                ValidInputs validating = new ValidInputs();
+                bool ValidateResult = validating.BreakingLoop(input);
+
+                if (ValidateResult == false)
+                {
+                    isRunning = false;
+                    break;
+                }
+                else
+                {
+                    Calculator CalculatorInstance = new Calculator();
+                    Console.WriteLine(CalculatorInstance.Calculate(input));
+                }
             }
         }
     }

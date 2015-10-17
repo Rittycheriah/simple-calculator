@@ -42,14 +42,14 @@ namespace calc
                 case "/":
                     DivideIt thisDivExp = new DivideIt();
                     answer = thisDivExp.Division(integers);
-                    break;
+                    return answer;
                 case "%":
                     ModIt thisModExp = new ModIt();
                     answer = thisModExp.Modulation(integers);
-                    break;
+                    return answer;
             }
 
-            throw new ArgumentException("Input doesn't contain an operand understood");
+            throw new ArgumentException("Input doesn't contain an operand understood {0}", thisOp);
         }
     }
 }
