@@ -10,12 +10,16 @@ namespace calc
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("[0]>");
+            // new counter for program
+            Counter thisCounterInst = new Counter();
 
+            // boolean for running program and breaking out of while loop
             bool isRunning = true;
 
+            // while bool = true, run this loop
             while (isRunning)
             {
+                Console.Write("[" + thisCounterInst.CountValue + "]");
                 string input = Console.ReadLine();
                 ValidInputs validating = new ValidInputs();
                 bool ValidateResult = validating.BreakingLoop(input);
@@ -29,6 +33,8 @@ namespace calc
                 {
                     Calculator CalculatorInstance = new Calculator();
                     Console.WriteLine(CalculatorInstance.Calculate(input));
+
+                    thisCounterInst.CountValue = thisCounterInst.Count + 1;
                 }
             }
         }

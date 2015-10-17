@@ -21,7 +21,7 @@ namespace calc
             string thisOp = regexProcessing.ExtractsOp(input);
 
             // holds answer value 
-            int answer;
+            int answer; 
 
             // make a new instance of the applicable class per the
             // operand extracted

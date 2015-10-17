@@ -240,5 +240,13 @@ namespace calcTests
             int ModAns = thisCalc.Calculate(input);
             Assert.AreEqual(1, ModAns);
         }
+
+        [TestMethod]
+        public void CanSetCounterVal()
+        {
+            Counter testCount = new Counter();
+            testCount.CountValue = testCount.Count + 1;
+            Assert.AreEqual(1, testCount.CountValue);
+        }
     }
 }
