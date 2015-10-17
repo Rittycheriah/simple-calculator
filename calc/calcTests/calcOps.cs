@@ -264,15 +264,38 @@ namespace calcTests
         [TestMethod]
         public void HoldsLastQ()
         {
-            LastQnA.lastq = "1 + 4";
+            LastQnA.LastQ= "1 + 4";
             Assert.AreEqual("1 + 4", LastQnA.LastQ);
         }
 
         [TestMethod]
         public void HoldsLastAns()
         {
-            LastQnA.lastans = 5;
+            LastQnA.LastAns = 5;
             Assert.AreEqual(5, LastQnA.LastAns);
         }
+
+        [TestMethod]
+        public void ConstantParsing()
+        {
+            ConstantParser TestConstantParser = new ConstantParser();
+            bool results = TestConstantParser.ConstTest("t = 0");
+            Assert.AreEqual(true, results);
+        }
+
+        [TestMethod]
+        public void ConstantParsedDoesNotTakeBadInput()
+        {
+            ConstantParser TestConstantParser = new ConstantParser();
+            bool results = TestConstantParser.ConstTest("xy = 0");
+            Assert.AreEqual(false, results);
+        }
+
+        //[TestMethod]
+        //public void HoldsConstantVals()
+        //{
+            // need a dictionary for storage
+            // need a regex for the constant value, use to lower on input
+        //}
     }
 }

@@ -42,14 +42,17 @@ namespace calc
 
                     if (input == "lastq" || input == " lastq")
                     {
+                        // show the last question
                         Console.WriteLine(LastQnA.LastQ);
                     }
                     else if (input == "last" || input == " last")
                     {
+                        // show last answer
                         Console.WriteLine(LastQnA.LastAns);
                     }
                     else
                     {
+                        // new calculator instance and begin calculation
                         int thisAnswer = CalculatorInstance.Calculate(input);
                         Console.WriteLine(thisAnswer);
                     }
