@@ -1,0 +1,8 @@
+C:\Users\Rainu\Desktop\calc\calc\calcTests\obj\Debug\calcTests.csprojResolveAssemblyReference.cache
+C:\Users\Rainu\Desktop\calc\calc\calcTests\bin\Debug\calcTests.dll
+C:\Users\Rainu\Desktop\calc\calc\calcTests\bin\Debug\calcTests.pdb
+C:\Users\Rainu\Desktop\calc\calc\calcTests\bin\Debug\calc.exe
+C:\Users\Rainu\Desktop\calc\calc\calcTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Rainu\Desktop\calc\calc\calcTests\bin\Debug\calc.pdb
+C:\Users\Rainu\Desktop\calc\calc\calcTests\obj\Debug\calcTests.dll
+C:\Users\Rainu\Desktop\calc\calc\calcTests\obj\Debug\calcTests.pdb
