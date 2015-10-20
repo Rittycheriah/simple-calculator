@@ -206,7 +206,7 @@ namespace calcTests
         {
             string input = "5";
             Calculator thisCalc = new Calculator();
-            int AdditionAns = thisCalc.Calculate(input);
+            string AdditionAns = thisCalc.Calculate(input);
         }
 
         [TestMethod]
@@ -214,8 +214,8 @@ namespace calcTests
         {
             string input = "4 + 2";
             Calculator thisCalc = new Calculator();
-            int AdditionAns = thisCalc.Calculate(input);
-            Assert.AreEqual(6, AdditionAns);
+            string AdditionAns = thisCalc.Calculate(input);
+            Assert.AreEqual("6", AdditionAns);
         }
 
         [TestMethod]
@@ -223,8 +223,8 @@ namespace calcTests
         {
             string input = "4 * 2";
             Calculator thisCalc = new Calculator();
-            int MultiplicationAns = thisCalc.Calculate(input);
-            Assert.AreEqual(8, MultiplicationAns);
+            string MultiplicationAns = thisCalc.Calculate(input);
+            Assert.AreEqual("8", MultiplicationAns);
         }
 
         [TestMethod]
@@ -232,8 +232,8 @@ namespace calcTests
         {
             string input = "4 / 2";
             Calculator thisCalc = new Calculator();
-            int DivisionAns = thisCalc.Calculate(input);
-            Assert.AreEqual(2, DivisionAns);
+            string DivisionAns = thisCalc.Calculate(input);
+            Assert.AreEqual("2", DivisionAns);
         }
 
         [TestMethod]
@@ -241,8 +241,8 @@ namespace calcTests
         {
             string input = "12 - 2";
             Calculator thisCalc = new Calculator();
-            int SubtractionAns = thisCalc.Calculate(input);
-            Assert.AreEqual(10, SubtractionAns);
+            string SubtractionAns = thisCalc.Calculate(input);
+            Assert.AreEqual("10", SubtractionAns);
         }
 
         [TestMethod]
@@ -250,8 +250,8 @@ namespace calcTests
         {
             string input = "11 % 2";
             Calculator thisCalc = new Calculator();
-            int ModAns = thisCalc.Calculate(input);
-            Assert.AreEqual(1, ModAns);
+            string ModAns = thisCalc.Calculate(input);
+            Assert.AreEqual("1", ModAns);
         }
 
         [TestMethod]
@@ -326,12 +326,6 @@ namespace calcTests
             string input = "x = 3";
             string result = TstParser.ConstKey(input);
             Assert.AreEqual("x", result);
-        }
-
-        [TestMethod]
-        public void HoldsConstantVals()
-        {
-            // need a regex for the constant value, use to lower on input
         }
     }
 }

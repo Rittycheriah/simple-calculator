@@ -9,8 +9,9 @@ namespace calc
 {
     public class Calculator
     {
-        public int Calculate(string input)
+        public string Calculate(string input)
         {
+
             // creates a new RegexProcessor
             RegexUtil regexProcessing = new RegexUtil();
 
@@ -21,7 +22,7 @@ namespace calc
             string thisOp = regexProcessing.ExtractsOp(input);
 
             // holds answer value
-            int answer;
+            string answer;
 
             // make a new instance of the applicable class per the
             // operand extracted
@@ -29,37 +30,39 @@ namespace calc
             {
                 case "+":
                     AddIt thisAddExp = new AddIt();
-                    answer = thisAddExp.Addition(integers);
-                    LastQnA.LastAns = answer;
+                    answer = thisAddExp.Addition(integers).ToString();
+                    LastQnA.LastAns = Convert.ToInt32(answer);
                     LastQnA.LastQ = input;
                     return answer;
                 case "-":
                     SubtractIt thisSubExp = new SubtractIt();
-                    answer = thisSubExp.Subtraction(integers);
-                    LastQnA.LastAns = answer;
+                    answer = thisSubExp.Subtraction(integers).ToString();
+                    LastQnA.LastAns = Convert.ToInt32(answer);
                     LastQnA.LastQ = input;
                     return answer;
                 case "*":
                     MultiplyIt thisMultiExp = new MultiplyIt();
-                    answer = thisMultiExp.Multiplication(integers);
-                    LastQnA.LastAns = answer;
+                    answer = thisMultiExp.Multiplication(integers).ToString();
+                    LastQnA.LastAns = Convert.ToInt32(answer);
                     LastQnA.LastQ = input;
                     return answer;
                 case "/":
                     DivideIt thisDivExp = new DivideIt();
-                    answer = thisDivExp.Division(integers);
-                    LastQnA.LastAns = answer;
+                    answer = thisDivExp.Division(integers).ToString();
+                    LastQnA.LastAns = Convert.ToInt32(answer);
                     LastQnA.LastQ = input;
                     return answer;
                 case "%":
                     ModIt thisModExp = new ModIt();
-                    answer = thisModExp.Modulation(integers);
-                    LastQnA.LastAns = answer;
+                    answer = thisModExp.Modulation(integers).ToString();
+                    LastQnA.LastAns = Convert.ToInt32(answer);
                     LastQnA.LastQ = input;
                     return answer;
+                case "=":
+                    answer = "Your value has been set";
+                    return answer;
+                default: throw new ArgumentException("Input doesn't contain an operand understood {0}", thisOp);
             }
-
-            throw new ArgumentException("Input doesn't contain an operand understood {0}", thisOp);
         }
     }
 }

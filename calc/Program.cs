@@ -56,7 +56,7 @@ namespace calc
                         else
                         {
                             // new calculator instance and begin calculation
-                            int thisAnswer = CalculatorInstance.Calculate(input);
+                            string thisAnswer = CalculatorInstance.Calculate(input);
                             Console.WriteLine(thisAnswer);
                         }
                     } // if not, throw an exception with the message text

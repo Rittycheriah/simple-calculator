@@ -16,6 +16,7 @@ namespace calc
         Regex divide_regex = new Regex(@"\s*(\d+)\s+([/])\s+(\d+)");
         Regex subt_regex = new Regex(@"\s*(\d+)\s+([-])\s+(\d+)");
         Regex mod_regex = new Regex(@"\s*(\d+)\s+([%])\s+(\d+)");
+        Regex ConstantPattern = new Regex(@"\s*([a-z]?)\s*([=])\s*(\d+)");
 
         // this method takes out numbers
         public ArrayList ExtractNums(string input)
@@ -23,6 +24,8 @@ namespace calc
             Regex genExp = new Regex(@"(\d+)\s([+\-%/*])\s(\d+)");
 
             Match genExpMatch = genExp.Match(input);
+            Match ConstantMatch = ConstantPattern.Match(input);
+
             if (genExpMatch.Success)
             {
                 ArrayList TheValues = new ArrayList();
@@ -32,10 +35,19 @@ namespace calc
                 TheValues.Add(value2);
                 return TheValues;
             }
-            else
+            else if (ConstantMatch.Success)
             {
-                throw new ArgumentException("Expression syntax is incorrect");
+                ConstantParser ConstantProcessing = new ConstantParser();
+                string key = ConstantProcessing.ConstKey(input);
+                int value = ConstantProcessing.ConstNum(input);
+                Constants.AddKey2Dictionary(key, value);
+                ArrayList TheValues = new ArrayList();
+                TheValues.Add(key);
+                TheValues.Add(value);
+                return TheValues;
             }
+
+            throw new ArgumentException("Expression syntax is incorrect");
         }
 
         // this is going to extract which type of expression it is
@@ -46,6 +58,7 @@ namespace calc
             Match MultiMatch = multiply_regex.Match(input);
             Match SubMatch = subt_regex.Match(input);
             Match ModMatch = mod_regex.Match(input);
+            Match ConstantMatch = ConstantPattern.Match(input);
 
             if (AddMatch.Success)
             {
@@ -72,9 +85,13 @@ namespace calc
                 ModIt thisMod = new ModIt();
                 return "%";
             }
+            else if (ConstantMatch.Success)
+            {
+                return "=";
+            }
             else
             {
-               throw new ArgumentException("No operator provided");
+                throw new ArgumentException("No operator provided");
             }
 
         }

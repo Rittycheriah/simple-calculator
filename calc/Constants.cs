@@ -21,6 +21,7 @@ namespace calc
         public static void AddKey2Dictionary(string input1, int input2)
         {
             thisInstanceConst.Add(input1, input2);
+            Console.WriteLine("Your variable {0} is equal to {1}", input1, input2);
         }
     }
 }
