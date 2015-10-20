@@ -32,6 +32,13 @@ namespace calc
             {
                 return false;
             }
-        } 
+        }
+
+        public int ConstNum(string input)
+        {
+            Match ConstantTest = ConstantPattern.Match(input);
+
+            throw new NotImplementedException();
+        }
     }
 }

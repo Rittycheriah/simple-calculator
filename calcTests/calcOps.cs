@@ -311,9 +311,14 @@ namespace calcTests
         }
 
         [TestMethod]
+        public void CanExtractNumFromConst()
+        {
+            ConstantParser TstParser = new ConstantParser();
+        }
+
+        [TestMethod]
         public void HoldsConstantVals()
         {
-            // need a dictionary for storage
             // need a regex for the constant value, use to lower on input
         }
     }

@@ -40,21 +40,30 @@ namespace calc
                     // other wise, valid result -- new Calculator instance
                     Calculator CalculatorInstance = new Calculator();
 
-                    if (input == "lastq" || input == " lastq")
+                    // try to use one of the default triggers
+                    try
                     {
-                        // show the last question
-                        Console.WriteLine(LastQnA.LastQ);
-                    }
-                    else if (input == "last" || input == " last")
+                        if (input == "lastq" || input == " lastq")
+                        {
+                            // show the last question
+                            Console.WriteLine(LastQnA.LastQ);
+                        }
+                        else if (input == "last" || input == " last")
+                        {
+                            // show last answer
+                            Console.WriteLine(LastQnA.LastAns);
+                        }
+                        else
+                        {
+                            // new calculator instance and begin calculation
+                            int thisAnswer = CalculatorInstance.Calculate(input);
+                            Console.WriteLine(thisAnswer);
+                        }
+                    } // if not, throw an exception with the message text
+                    catch (ArgumentException thisOne)
                     {
-                        // show last answer
-                        Console.WriteLine(LastQnA.LastAns);
-                    }
-                    else
-                    {
-                        // new calculator instance and begin calculation
-                        int thisAnswer = CalculatorInstance.Calculate(input);
-                        Console.WriteLine(thisAnswer);
+                        string response = thisOne.Message;
+                        Console.WriteLine(response);
                     }
 
                     // increment counter
