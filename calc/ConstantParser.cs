@@ -38,7 +38,32 @@ namespace calc
         {
             Match ConstantTest = ConstantPattern.Match(input);
 
-            throw new NotImplementedException();
+            if (ConstantTest.Success)
+            {
+                int theValue;
+                theValue = int.Parse(ConstantTest.Groups[3].Value);
+                return theValue;
+            }
+            else
+            {
+                throw new ArgumentException("Constant Doesn't Contain Integer Value");
+            }
+        }
+
+        public string ConstKey(string input)
+        {
+            Match ConstantTest = ConstantPattern.Match(input);
+
+            if (ConstantTest.Success)
+            {
+                string theKey;
+                theKey = ConstantTest.Groups[1].Value.ToString();
+                return theKey;
+            }
+            else
+            {
+                throw new ArgumentException("Constant Doesn't Contain AlphaChar Key");
+            }
         }
     }
 }

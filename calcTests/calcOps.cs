@@ -314,6 +314,18 @@ namespace calcTests
         public void CanExtractNumFromConst()
         {
             ConstantParser TstParser = new ConstantParser();
+            string input = "x = 3";
+            int result = TstParser.ConstNum(input);
+            Assert.AreEqual(3, result);
+        }
+
+        [TestMethod]
+        public void CanExtractKeyFromConst()
+        {
+            ConstantParser TstParser = new ConstantParser();
+            string input = "x = 3";
+            string result = TstParser.ConstKey(input);
+            Assert.AreEqual("x", result);
         }
 
         [TestMethod]
