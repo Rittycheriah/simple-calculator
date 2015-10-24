@@ -320,24 +320,66 @@ namespace calcTests
         }
 
         [TestMethod]
-        public void CanReturnValueFromConstantExpression()
+        public void GettingConstantValueWorks()
         {
-            Constants.AddKey2Dictionary("y", 5);
-            string input = "y + 3";
-            ArrayList ExpectedInput = new ArrayList();
-            ExpectedInput.Add("5");
-            ExpectedInput.Add("3");
-            RegexUtil TestConstantExpression = new RegexUtil();
-            ArrayList answer = TestConstantExpression.ExtractNums(input);
-            CollectionAssert.AreEqual(ExpectedInput, answer);
+            Constants.AddKey2Dictionary("y", 6);
+            RegexUtil TestingRegex = new RegexUtil();
+            string input = "y + 6";
+            ArrayList actual = TestingRegex.ExtractNums(input);
+            ArrayList expected = new ArrayList();
+            expected.Add(6);
+            expected.Add(6);
+            CollectionAssert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void CanCalculateBasedOnConstantExpression()
+        public void UsingConstantAddition()
         {
-            Constants.AddKey2Dictionary("c", 6);
-            string input = "c + 1";
-                       
+            Constants.AddKey2Dictionary("a", 10);
+            string input = "a + 2";
+            Calculator thisCalc = new Calculator();
+            string ConstAdditionAns = thisCalc.Calculate(input);
+            Assert.AreEqual("12", ConstAdditionAns);
+        }
+
+        [TestMethod]
+        public void UsingConstantSubtraction()
+        {
+            Constants.AddKey2Dictionary("e", 11);
+            string input = "e - 2";
+            Calculator thisCalc = new Calculator();
+            string ConstSubtractionAns = thisCalc.Calculate(input);
+            Assert.AreEqual("9", ConstSubtractionAns);
+        }
+
+        [TestMethod]
+        public void UsingConstantMultiplication()
+        {
+            Constants.AddKey2Dictionary("d", 9);
+            string input = "d * 2";
+            Calculator thisCalc = new Calculator();
+            string ConstMultiAns = thisCalc.Calculate(input);
+            Assert.AreEqual("18", ConstMultiAns);
+        }
+
+        [TestMethod]
+        public void UsingConstantDivision()
+        {
+            Constants.AddKey2Dictionary("c", 8);
+            string input = "c / 2";
+            Calculator thisCalc = new Calculator();
+            string ConstDivisionAns = thisCalc.Calculate(input);
+            Assert.AreEqual("4", ConstDivisionAns);
+        }
+
+        [TestMethod]
+        public void UsingConstantModulus()
+        {
+            Constants.AddKey2Dictionary("b", 16);
+            string input = "b % 2";
+            Calculator thisCalc = new Calculator();
+            string ConstModulusAns = thisCalc.Calculate(input);
+            Assert.AreEqual("0", ConstModulusAns);
         }
     }
 }

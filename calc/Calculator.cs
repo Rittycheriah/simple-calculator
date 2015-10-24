@@ -15,6 +15,9 @@ namespace calc
             // creates a new RegexProcessor
             RegexUtil regexProcessing = new RegexUtil();
 
+            // creates a new setting ConstantParser
+            ConstantParser constantSetting = new ConstantParser();
+
             // extract integers
             ArrayList integers = regexProcessing.ExtractNums(input);
 

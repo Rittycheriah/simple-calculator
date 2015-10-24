@@ -10,7 +10,7 @@ namespace calc
     {
         // Dictionary for this instance of calc
         private static Dictionary<string, int> thisInstanceConst = new Dictionary<string, int>();
-
+        
         // public data member to interact with Dictionary
         public static Dictionary<string, int> SessionConstants 
         {
@@ -23,5 +23,6 @@ namespace calc
             thisInstanceConst.Add(input1, input2);
             Console.WriteLine("Your variable {0} is equal to {1}", input1, input2);
         }
+
     }
 }

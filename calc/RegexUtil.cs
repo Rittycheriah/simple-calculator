@@ -11,20 +11,24 @@ namespace calc
     public class RegexUtil
     {
         // these are the regex's for each type of match 
-        Regex add_regex = new Regex(@"\s*(\d+)\s+([+])\s+(\d+)");
-        Regex multiply_regex = new Regex(@"\s*(\d+)\s+([*])\s+(\d+)");
-        Regex divide_regex = new Regex(@"\s*(\d+)\s+([/])\s+(\d+)");
-        Regex subt_regex = new Regex(@"\s*(\d+)\s+([-])\s+(\d+)");
-        Regex mod_regex = new Regex(@"\s*(\d+)\s+([%])\s+(\d+)");
+        Regex add_regex = new Regex(@"\s*(\d+|[a-z])\s*([+])\s*(\d+|[a-z])");
+        Regex multiply_regex = new Regex(@"\s*(\d+|[a-z])\s*([*])\s*(\d+|[a-z])");
+        Regex divide_regex = new Regex(@"\s*(\d+|[a-z])\s*([/])\s*(\d+|[a-z])");
+        Regex subt_regex = new Regex(@"\s*(\d+|[a-z])\s*([-])\s*(\d+|[a-z])");
+        Regex mod_regex = new Regex(@"\s*(\d+|[a-z])\s*([%])\s*(\d+|[a-z])");
         Regex ConstantPattern = new Regex(@"\s*([a-z]?)\s*([=])\s*(\d+)");
         Regex genExp = new Regex(@"\s*(\d+|[a-z])\s*([+=*/%-])\s*(\d+|[a-z])");
+
+        public bool ConstantValue = false;
 
         // this method takes out numbers
         public ArrayList ExtractNums(string input)
         {
             // general simple exp match
             Match genExpMatch = genExp.Match(input);
+            Match ConstSetMatch = ConstantPattern.Match(input);
 
+            string ConstSet;
             int value1;
             int value2;
 
@@ -36,31 +40,59 @@ namespace calc
 
                 ArrayList TheValues = new ArrayList();
 
-                // if firstgroup = false, then it is a constant and look it up. 
-                // and if ParseSecGroup = true, then it's an integer and add to TheValues
-                if (!ParseFirstGroup && ParseSecondGroup)
+                if (ConstSetMatch.Success)
                 {
-                    bool ConstantValue = Constants.SessionConstants.TryGetValue(genExpMatch.Groups[1].Value, out value1);
-                    TheValues.Add(value1);
+                    ConstSet = ConstSetMatch.Groups[1].Value;
+                    bool ConstSetValue = Int32.TryParse(ConstSetMatch.Groups[3].Value, out value2);
+                    Constants.AddKey2Dictionary(ConstSet, value2);
+                    TheValues.Add(ConstSet);
                     TheValues.Add(value2);
                     return TheValues;
+                }
+                // if firstgroup = false, then it is a constant and look it up. 
+                // and if ParseSecGroup = true, then it's an integer and add to TheValues
+                else if (!ParseFirstGroup && ParseSecondGroup)
+                {
+                    if (Constants.SessionConstants.TryGetValue(genExpMatch.Groups[1].Value, out value1))
+                    {
+                        TheValues.Add(value1);
+                        TheValues.Add(value2);
+                        return TheValues;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("No value found for constant");
+                    }
                 }
                 else if (ParseFirstGroup && !ParseSecondGroup)
                 {
                     // the reverse situation of the above
-                    bool ConstantValue = Constants.SessionConstants.TryGetValue(genExpMatch.Groups[3].Value, out value2);
-                    TheValues.Add(value1);
-                    TheValues.Add(value2);
-                    return TheValues;
+                    if (Constants.SessionConstants.TryGetValue(genExpMatch.Groups[3].Value, out value2))
+                    {
+                        TheValues.Add(value1);
+                        TheValues.Add(value2);
+                        return TheValues;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Constant value not found");
+                    }
+
                 }
                 else if (!ParseFirstGroup && !ParseSecondGroup)
                 {
                     // if neither passes, then they are both constants and look up their value.
-                    bool ContantValue1 = Constants.SessionConstants.TryGetValue(genExpMatch.Groups[1].Value, out value1);
-                    bool ConstantValue2 = Constants.SessionConstants.TryGetValue(genExpMatch.Groups[3].Value, out value2);
-                    TheValues.Add(value1);
-                    TheValues.Add(value2);
-                    return TheValues;
+
+                    if (Constants.SessionConstants.TryGetValue(genExpMatch.Groups[1].Value, out value1) && Constants.SessionConstants.TryGetValue(genExpMatch.Groups[3].Value, out value2))
+                    {
+                        TheValues.Add(value1);
+                        TheValues.Add(value2);
+                        return TheValues;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("One of the constants wasn't found");
+                    }
                 }
                 else if (ParseFirstGroup && ParseSecondGroup)
                 {
@@ -69,6 +101,7 @@ namespace calc
                     TheValues.Add(value2);
                     return TheValues;
                 }
+                
             }
 
             throw new ArgumentException("Expression syntax is incorrect");
