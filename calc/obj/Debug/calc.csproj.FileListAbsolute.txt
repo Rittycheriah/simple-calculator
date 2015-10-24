@@ -1,5 +1,5 @@
 C:\Users\Rainu\Desktop\calc\calc\calc\bin\Debug\calc.exe.config
-C:\Users\Rainu\Desktop\calc\calc\calc\bin\Debug\calc.exe
-C:\Users\Rainu\Desktop\calc\calc\calc\bin\Debug\calc.pdb
 C:\Users\Rainu\Desktop\calc\calc\calc\obj\Debug\calc.exe
 C:\Users\Rainu\Desktop\calc\calc\calc\obj\Debug\calc.pdb
+C:\Users\Rainu\Desktop\calc\calc\calc\bin\Debug\calc.exe
+C:\Users\Rainu\Desktop\calc\calc\calc\bin\Debug\calc.pdb

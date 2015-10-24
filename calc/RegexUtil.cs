@@ -17,34 +17,58 @@ namespace calc
         Regex subt_regex = new Regex(@"\s*(\d+)\s+([-])\s+(\d+)");
         Regex mod_regex = new Regex(@"\s*(\d+)\s+([%])\s+(\d+)");
         Regex ConstantPattern = new Regex(@"\s*([a-z]?)\s*([=])\s*(\d+)");
+        Regex genExp = new Regex(@"\s*(\d+|[a-z])\s*([+=*/%-])\s*(\d+|[a-z])");
 
         // this method takes out numbers
         public ArrayList ExtractNums(string input)
         {
-            Regex genExp = new Regex(@"(\d+)\s([+\-%/*])\s(\d+)");
-
+            // general simple exp match
             Match genExpMatch = genExp.Match(input);
-            Match ConstantMatch = ConstantPattern.Match(input);
+
+            int value1;
+            int value2;
 
             if (genExpMatch.Success)
             {
+                // try to parse out the integers
+                bool ParseFirstGroup = Int32.TryParse(genExpMatch.Groups[1].Value, out value1);
+                bool ParseSecondGroup = Int32.TryParse(genExpMatch.Groups[3].Value, out value2);
+
                 ArrayList TheValues = new ArrayList();
-                int value1 = int.Parse(genExpMatch.Groups[1].Value);
-                int value2 = int.Parse(genExpMatch.Groups[3].Value);
-                TheValues.Add(value1);
-                TheValues.Add(value2);
-                return TheValues;
-            }
-            else if (ConstantMatch.Success)
-            {
-                ConstantParser ConstantProcessing = new ConstantParser();
-                string key = ConstantProcessing.ConstKey(input);
-                int value = ConstantProcessing.ConstNum(input);
-                Constants.AddKey2Dictionary(key, value);
-                ArrayList TheValues = new ArrayList();
-                TheValues.Add(key);
-                TheValues.Add(value);
-                return TheValues;
+
+                // if firstgroup = false, then it is a constant and look it up. 
+                // and if ParseSecGroup = true, then it's an integer and add to TheValues
+                if (!ParseFirstGroup && ParseSecondGroup)
+                {
+                    bool ConstantValue = Constants.SessionConstants.TryGetValue(genExpMatch.Groups[1].Value, out value1);
+                    TheValues.Add(value1);
+                    TheValues.Add(value2);
+                    return TheValues;
+                }
+                else if (ParseFirstGroup && !ParseSecondGroup)
+                {
+                    // the reverse situation of the above
+                    bool ConstantValue = Constants.SessionConstants.TryGetValue(genExpMatch.Groups[3].Value, out value2);
+                    TheValues.Add(value1);
+                    TheValues.Add(value2);
+                    return TheValues;
+                }
+                else if (!ParseFirstGroup && !ParseSecondGroup)
+                {
+                    // if neither passes, then they are both constants and look up their value.
+                    bool ContantValue1 = Constants.SessionConstants.TryGetValue(genExpMatch.Groups[1].Value, out value1);
+                    bool ConstantValue2 = Constants.SessionConstants.TryGetValue(genExpMatch.Groups[3].Value, out value2);
+                    TheValues.Add(value1);
+                    TheValues.Add(value2);
+                    return TheValues;
+                }
+                else if (ParseFirstGroup && ParseSecondGroup)
+                {
+                    // then they are both constants and add to the arraylist with the integers
+                    TheValues.Add(value1);
+                    TheValues.Add(value2);
+                    return TheValues;
+                }
             }
 
             throw new ArgumentException("Expression syntax is incorrect");
@@ -94,6 +118,11 @@ namespace calc
                 throw new ArgumentException("No operator provided");
             }
 
+        }
+
+        public int GetsValue()
+        {
+            throw new NotImplementedException();
         }
     }
 }

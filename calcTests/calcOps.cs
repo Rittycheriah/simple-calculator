@@ -115,15 +115,6 @@ namespace calcTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void DoesNotTakeAlphabet()
-        {
-            string input = "abc + def";
-            RegexUtil process = new RegexUtil();
-            ArrayList answer = process.ExtractNums(input);
-        }
-
-        [TestMethod]
         public void ExtractsAddOperand()
         {
             string input = "3 + 4";
@@ -326,6 +317,27 @@ namespace calcTests
             string input = "x = 3";
             string result = TstParser.ConstKey(input);
             Assert.AreEqual("x", result);
+        }
+
+        [TestMethod]
+        public void CanReturnValueFromConstantExpression()
+        {
+            Constants.AddKey2Dictionary("y", 5);
+            string input = "y + 3";
+            ArrayList ExpectedInput = new ArrayList();
+            ExpectedInput.Add("5");
+            ExpectedInput.Add("3");
+            RegexUtil TestConstantExpression = new RegexUtil();
+            ArrayList answer = TestConstantExpression.ExtractNums(input);
+            CollectionAssert.AreEqual(ExpectedInput, answer);
+        }
+
+        [TestMethod]
+        public void CanCalculateBasedOnConstantExpression()
+        {
+            Constants.AddKey2Dictionary("c", 6);
+            string input = "c + 1";
+                       
         }
     }
 }
